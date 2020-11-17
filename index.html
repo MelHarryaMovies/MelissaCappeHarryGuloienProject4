@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Project 4</title>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <h1>HOW ABOUT A SHITTY MOVIE?</h1>
+            <a href="#questionOne">Find Movie!</a>
+        </div>
+    </header>
+
+    <main>
+        <form>
+            <section id="questionOne">
+                <div class="wrapper">
+                    <legend>What's your ideal first date?</legend>
+                    <div>
+                        <input type="radio" name="firstDate" id="romance1" value="romance" aria-required="true" required>
+                        <label for="romance1">Candle lit dinner under the stars</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="firstDate" id="action1" value="action">
+                        <label for="action1">Break sh*t in a rage room</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="firstDate" id="horror1" value="horror">
+                        <label for="horror1">A moisturised rub down while wearing the skin of your date</label>
+                    </div>
+                </div>
+            </section>
+            <section id="questionTwo">
+                <div class="wrapper">
+                    <legend>What is your dream car?</legend>
+                    <div>
+                        <input type="radio" name="idealCar" id="romance2" value="romance" aria-required="true" required>
+                        <label for="romance2">Little red corvette</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="idealCar" id="action2" value="action">
+                        <label for="action2">Whatever Dominic Toretto Drives</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="idealCar" id="horror2" value="horror">
+                        <label for="horror2">A hearse</label>
+                    </div>
+                </div>
+            </section>
+            <section id="questionThree">
+                <div class="wrapper">
+                    <legend>What's your dream vacation spot?</legend>
+                    <div>
+                        <input type="radio" name="vacation" id="romance3" value="romance" aria-required="true" required>
+                        <label for="romance3">Road trip down route 66</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="vacation" id="action3" value="action">
+                        <label for="action3">Queenstown New Zealand - the adventure capital of the world</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="vacation" id="horror3" value="horror">
+                        <label for="horror3">The United States circa 2016-2020</label>
+                    </div>
+                </div>
+            </section>
+            <section class="goButton">
+                <button type="submit">Find me a trash movie!</button>
+            </section>
+        </form>
+        <section class="results">
+            <h2>And you movie is...</h2>
+            <div class="flexBox">
+                <div class="imagebox">
+                </div>
+                <ul class="movieInfo">
+                </ul>
+                <a class="reload" href="#questionOne">Again?</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made by Melissa Cappe & Harry Guloien @ <a href="https://junocollege.com">Juno College</a></p>
+    </footer>
+
+    <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
+    <script src="script.js"></script>
+</body>
+</html>
