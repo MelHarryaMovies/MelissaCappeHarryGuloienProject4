@@ -1,0 +1,24 @@
+section {
+    background-color: $sectionsColour;
+    height: 100vh;
+}
+
+section:nth-of-type(2n) {
+    background-color: $accentColour;
+}
+
+.q1,
+.q2,
+.q3 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+legend {
+    font-size: 5rem;
+}
+
+label {
+    font-size: 3.2rem;
+    line-height: 3.8rem;
+}
