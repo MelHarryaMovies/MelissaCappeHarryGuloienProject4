@@ -288,6 +288,10 @@ input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
 }
 
 .flexColumn {
@@ -305,10 +309,16 @@ input {
 
 .enter,
 .reload {
-  background-color: #f05454;
+  background-color: #222831;
   color: white;
   padding: 15px;
   font-size: 2rem;
+}
+
+.radio {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 header {
@@ -345,4 +355,40 @@ legend {
 label {
   font-size: 3.2rem;
   line-height: 3.8rem;
+}
+
+.goButton .flexColumn {
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+button {
+  height: 100px;
+  width: 400px;
+  font-size: 3rem;
+  font-family: "Goldman", cursive;
+  padding: 20px;
+  border-bottom: 4px;
+}
+
+h2 {
+  font-size: 4.5rem;
+}
+
+.reload {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+footer {
+  padding: 20px 0;
+  background-color: #e8e8e8;
+}
+
+p {
+  text-align: center;
+  font-size: 1.8rem;
 }

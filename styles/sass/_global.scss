@@ -46,10 +46,9 @@ input {
     border: none;
 }
 
-
-
 .flexBox {
     display: flex;
+    flex-direction: row-reverse;
 }
 .flexColumn {
     display: flex;
@@ -59,8 +58,12 @@ input {
 
 .enter,
 .reload {
-    background-color: $sectionsColour;
+    background-color: $extraColour;
     color: $fontColour;
     padding: 15px;
     font-size: 2rem;
+}
+
+.radio {
+    align-items: flex-start;
 }
