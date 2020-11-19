@@ -5,6 +5,10 @@ const myApp = {};
 myApp.apiKey = `262b2d458b0315ed4049499ffec1d210`;
 myApp.url = `https://api.themoviedb.org/3/discover/movie`
 
+myApp.romanceId = 10749;
+myApp.actionId = 28;
+myApp.horrorId = 27;
+
 //genre - https://api.themoviedb.org/3/genre/movie/list
 
 
@@ -20,7 +24,7 @@ myApp.url = `https://api.themoviedb.org/3/discover/movie`
 
 //function to call from the api and pass in user data variables as parameters
 //grab movie poster, title, rating
-$.ajax({
+myApp.getInfo = $.ajax({
     url: myApp.url,
     method: `GET`,
     datatype: `jsonp`,
@@ -28,13 +32,21 @@ $.ajax({
         api_key: myApp.apiKey,
         language: `en-US`,
         sort_by: `popularity.desc`,
-        page: 499,
+        page: 499
     }
-}).then(function(response) {
-    console.log(response);
 })
+console.log(myApp.getInfo);
 
+myApp.getInfo.then(function(response) {
+    const movieArray = response.results;
+    console.log(movieArray[0].genre_ids);
 
+    movieArray.forEach(function(movie) {
+        const {genre_ids, title} = movie;
+        console.log(`${genre_ids} film name - ${title}`);
+    })
+    
+})
 
 //create display on page function 
 
