@@ -44,8 +44,8 @@ myApp.buttonEvents = () => {
     });
     $('input[name=vacation]').on('change', function () {
         myApp.scrolly($('#goButton'));
-
     });
+    
 }
 
 myApp.scrolly = (whereTo) => {
@@ -54,10 +54,11 @@ myApp.scrolly = (whereTo) => {
     }, 1000);
 }
 
-myApp.genreFind = (arr) => {
+// myApp.genreFind = (arr) => {
 
     $('form').on('submit', function (e) {
         e.preventDefault();
+        
 
 
         const romanceArray = [];
@@ -69,7 +70,7 @@ myApp.genreFind = (arr) => {
         const questionTwoChoice = $('input[name=idealCar]:checked').val();
         const questionThreeChoice = $('input[name=vacation]:checked').val();
 
-        const userChoiceArray = [questionOneChoice,    questionTwoChoice, questionThreeChoice];
+        const userChoiceArray = [questionOneChoice, questionTwoChoice, questionThreeChoice];
  
         for (let i = 0; i < userChoiceArray.length; ++i) {
 
@@ -117,10 +118,7 @@ myApp.genreFind = (arr) => {
 
     })
 
-}
-
-$('')
-
+// }
 
 
 //call info from api 
@@ -154,7 +152,7 @@ myApp.getInfo = function(pages) {
         })
         movieData.forEach(function(film) {
             const { genre_ids, title, poster_path, overview } = film;
-            console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
+            // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
         })
 
     })
@@ -174,7 +172,7 @@ myApp.getInfo = function(pages) {
     //         // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
     //     })
 
-    //     myApp.genreFind(movieArray);
+        // myApp.genreFind(movieArray);
 
     // })
 
