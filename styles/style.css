@@ -321,15 +321,23 @@ input {
           align-items: flex-start;
 }
 
+.hide {
+  display: none;
+}
+
 header {
   height: 100vh;
   background-color: #e8e8e8;
+  padding-top: 80px;
 }
 
 h1 {
   text-align: center;
-  padding-top: 80px;
   font-size: 4rem;
+}
+
+.enter {
+  position: absolute;
 }
 
 section {

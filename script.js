@@ -104,7 +104,9 @@ myApp.genreFind = (arr) => {
 }
 
 //call info from api 
-myApp.getInfo = $.ajax({
+
+myApp.getInfo = function(pages) {
+    return $.ajax({
         url: myApp.url,
         method: `GET`,
         datatype: `jsonp`,
@@ -112,23 +114,38 @@ myApp.getInfo = $.ajax({
             api_key: myApp.apiKey,
             language: `en-US`,
             sort_by: `popularity.desc`,
-            page: 500
+            page: pages
         }
     })
     // console.log(myApp.getInfo);
+}
 
-    myApp.getInfo.then(function (response) {
-        const movieArray = response.results;
-        console.log(movieArray);
-
-        movieArray.forEach(function (movie) {
-            const { genre_ids, title, poster_path, overview } = movie;
-            // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
+    const promiseArray = [];
+    
+    for (let n = 480; n <= 500; n++) {
+        promiseArray.push(myApp.getInfo(n));
+    }
+    $.when(...promiseArray) 
+    .then(function(...moviePage) {
+        // console.log(moviePage);
+        const movieData = moviePage.map(function(singlePage) {
+            // console.log(singlePage[0].results[0].title)
+            return singlePage[0].results[0];
         })
-
-        myApp.genreFind(movieArray);
-
     })
+
+    // myApp.getInfo.then(function (response) {
+    //     const movieArray = response.results;
+    //     console.log(movieArray);
+
+    //     movieArray.forEach(function (movie) {
+    //         const { genre_ids, title, poster_path, overview } = movie;
+    //         // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
+    //     })
+
+    //     myApp.genreFind(movieArray);
+
+    // })
 
     
 //scroll function on h1 button that scrolls you down to q1
