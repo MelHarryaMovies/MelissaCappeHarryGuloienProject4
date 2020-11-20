@@ -16,6 +16,15 @@ myApp.horrorId = 27;
 //create init function 
 //timeout function on H1 or hover event listener that turns it into a button
 
+//randomizer function for ego check station outputs
+myApp.randomizer = (arr) => {
+    //write math to give a random number within the length of the array 
+    const randomIndex = Math.floor(Math.random() * arr.length);
+
+    //pass that number into the index of the array
+    return arr[randomIndex];
+}
+
 myApp.buttonEvent = () => {
     $('.enter').hide();
     setTimeout(function() {
@@ -30,7 +39,7 @@ myApp.buttonEvent = () => {
 
 }
 
-myApp.genreFind = () => {
+myApp.genreFind = (arr) => {
 
     $('form').on('submit', function (e) {
         e.preventDefault();
@@ -60,28 +69,68 @@ myApp.genreFind = () => {
             
             
         }
+
         const romanceScore = romanceArray.length;
         const actionScore = actionArray.length;
         const horrorScore = horrorArray.length;
-        console.log(Math.max(romanceScore, actionScore, horrorScore));
+        
+        if (romanceScore >= 2) {
+            const chosenGenre = myApp.romanceId;
+        }
+        else if (actionScore >=2) {
+            const chosenGenre = myApp.actionId;
+        }
+        else if (horrorScore >=2) {
+            const chosenGenre = myApp.horrorId;
+        }
+        else {
+            console.log('fuck you');
+            const chosenTitle = arr[16].title;
+            const chosenOverview = arr[16].overview;
+            const chosenPoster = arr[16].poster_path;
 
-            // if (questionOneChoice == 'romance') {
-            //     romanceArray.push(questionOneChoice);
-            // }
-            // else if (questionOneChoice == 'action') {
-            //     actionArray.push(questionOneChoice);
-            // }
-            // else if (questionOneChoice == 'horror') {
-            //     horrorArray.push(questionOneChoice);
-            // }
+        }
+        
+            
         
 
-        
+    
 
         console.log(romanceArray, actionArray, horrorArray);
+
+
     })
  
 }
+
+//call info from api 
+myApp.getInfo = $.ajax({
+        url: myApp.url,
+        method: `GET`,
+        datatype: `jsonp`,
+        data: {
+            api_key: myApp.apiKey,
+            language: `en-US`,
+            sort_by: `popularity.desc`,
+            page: 500
+        }
+    })
+    // console.log(myApp.getInfo);
+
+    myApp.getInfo.then(function (response) {
+        const movieArray = response.results;
+        console.log(movieArray);
+
+        movieArray.forEach(function (movie) {
+            const { genre_ids, title, poster_path, overview } = movie;
+            // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
+        })
+
+        myApp.genreFind(movieArray);
+
+    })
+
+    
 //scroll function on h1 button that scrolls you down to q1
 
 //create function to gather user input and store it in variables
@@ -93,32 +142,9 @@ myApp.genreFind = () => {
 myApp.init = () => {
     //hide button on load
     myApp.buttonEvent();
-    myApp.genreFind();
+    
 
-    //call info from api 
-    myApp.getInfo = $.ajax({
-        url: myApp.url,
-        method: `GET`,
-        datatype: `jsonp`,
-        data: {
-            api_key: myApp.apiKey,
-            language: `en-US`,
-            sort_by: `popularity.desc`,
-            page: 499
-        }
-    })
-    // console.log(myApp.getInfo);
     
-    myApp.getInfo.then(function(response) {
-        const movieArray = response.results;
-        // console.log(movieArray);
-    
-        movieArray.forEach(function(movie) {
-            const {genre_ids, title, poster_path, overview} = movie;
-            // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
-        })
-        
-    })
 
 
 }
