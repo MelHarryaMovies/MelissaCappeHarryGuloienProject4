@@ -25,24 +25,40 @@ myApp.randomizer = (arr) => {
     return arr[randomIndex];
 }
 
-myApp.buttonEvent = () => {
+myApp.buttonEvents = () => {
     $('.enter').hide();
     setTimeout(function() {
         $('.enter').fadeIn('slow', function() {
-           
         });
         $('h1').fadeOut('slow', function() {
-
         })
     }, 2000);
+    
+    $('input[name=firstDate]').on('change', function() {
+        myApp.scrolly($('#questionTwo'));
+        
+    });
+    $('input[name=idealCar]').on('change', function () {
+        myApp.scrolly($('#questionThree'));
 
+    });
+    $('input[name=vacation]').on('change', function () {
+        myApp.scrolly($('#goButton'));
 
+    });
+}
+
+myApp.scrolly = (whereTo) => {
+    $([document.documentElement, document.body]).animate({
+        scrollTop: whereTo.offset().top
+    }, 1000);
 }
 
 myApp.genreFind = (arr) => {
 
     $('form').on('submit', function (e) {
         e.preventDefault();
+
 
         const romanceArray = [];
         const actionArray = [];
@@ -100,8 +116,12 @@ myApp.genreFind = (arr) => {
 
 
     })
- 
+
 }
+
+$('')
+
+
 
 //call info from api 
 
@@ -129,10 +149,21 @@ myApp.getInfo = function(pages) {
     .then(function(...moviePage) {
         // console.log(moviePage);
         const movieData = moviePage.map(function(singlePage) {
-            // console.log(singlePage[0].results[0].title)
+            // console.log(singlePage[0].results[1].title)
             return singlePage[0].results[0];
         })
+        movieData.forEach(function(film) {
+            const { genre_ids, title, poster_path, overview } = film;
+            console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
+        })
+
     })
+    .fail(function(noMovie) {
+        // append error message - this is FUCKED!
+        console.log('no movie')
+    })
+
+
 
     // myApp.getInfo.then(function (response) {
     //     const movieArray = response.results;
@@ -158,7 +189,8 @@ myApp.getInfo = function(pages) {
 //grab movie poster, title, overview
 myApp.init = () => {
     //hide button on load
-    myApp.buttonEvent();
+    myApp.buttonEvents();
+    
     
 
     

@@ -36,7 +36,7 @@ li {
 }
 
 img{
-    width: 100%;
+    width: 50%;
     height: auto;
     display: block;
     margin: 0;
@@ -48,7 +48,9 @@ input {
 
 .flexBox {
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    padding-top: 30px;
+    
 }
 .flexColumn {
     display: flex;
@@ -64,10 +66,32 @@ input {
     font-size: 2rem;
 }
 
+
+
 .radio {
     align-items: flex-start;
 }
 
 .hide {
     display: none;
+}
+
+.imageBox,
+.infoBox {
+    width: 50%;
+    
+}
+
+.movieInfo {
+    padding-top: 50px;
+    font-size: 3.5rem;
+    text-decoration: underline;
+}
+
+.title {
+    font-size: 5rem;
+}
+
+.overview {
+    margin-bottom: 50px;
 }
