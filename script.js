@@ -25,6 +25,14 @@ myApp.randomizer = (arr) => {
     return arr[randomIndex];
 }
 
+myApp.scrolly = (whereTo) => {
+    $([document.documentElement, document.body]).animate({
+        scrollTop: whereTo.offset().top
+    }, 1000);
+}
+
+
+
 myApp.buttonEvents = () => {
     $('.enter').hide();
     setTimeout(function() {
@@ -46,20 +54,19 @@ myApp.buttonEvents = () => {
         myApp.scrolly($('#goButton'));
     });
     
+    
 }
 
-myApp.scrolly = (whereTo) => {
-    $([document.documentElement, document.body]).animate({
-        scrollTop: whereTo.offset().top
-    }, 1000);
-}
 
-// myApp.genreFind = (arr) => {
+
+
+
+myApp.genreFind = (arr) => {
 
     $('form').on('submit', function (e) {
         e.preventDefault();
         
-
+        myApp.scrolly($('#results'));
 
         const romanceArray = [];
         const actionArray = [];
@@ -90,9 +97,25 @@ myApp.scrolly = (whereTo) => {
         const romanceScore = romanceArray.length;
         const actionScore = actionArray.length;
         const horrorScore = horrorArray.length;
-        
+        const fuckingMovies = [];
         if (romanceScore >= 2) {
             const chosenGenre = myApp.romanceId;
+            
+            finalArray.map(function (oneMovie) {
+                if (oneMovie.genre_ids == chosenGenre) {
+                    fuckingMovies.push(oneMovie);
+                }
+                
+            })
+            console.log(fuckingMovies);
+            // console.log(moviesGodDamnit.genre_ids);
+                
+            
+            
+
+
+            // finalArray[i][chosenGenre]
+            // console.log(genreArray);
         }
         else if (actionScore >=2) {
             const chosenGenre = myApp.actionId;
@@ -109,16 +132,16 @@ myApp.scrolly = (whereTo) => {
         }
         
             
-        
+       
 
     
 
-        console.log(romanceArray, actionArray, horrorArray);
+        // console.log(romanceArray, actionArray, horrorArray);
 
 
     })
 
-// }
+}
 
 
 //call info from api 
@@ -139,7 +162,8 @@ myApp.getInfo = function(pages) {
 }
 
     const promiseArray = [];
-    
+    const finalArray = [];
+
     for (let n = 480; n <= 500; n++) {
         promiseArray.push(myApp.getInfo(n));
     }
@@ -148,13 +172,22 @@ myApp.getInfo = function(pages) {
         // console.log(moviePage);
         const movieData = moviePage.map(function(singlePage) {
             // console.log(singlePage[0].results[1].title)
-            return singlePage[0].results[0];
+            return singlePage[0].results;
         })
         movieData.forEach(function(film) {
             const { genre_ids, title, poster_path, overview } = film;
             // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
+            
+        })
+        // console.log(movieData[0]);
+
+        movieData.forEach(function(arrayPage) {
+            finalArray.push(...arrayPage);
+            
         })
 
+        myApp.genreFind();
+        console.log(finalArray);
     })
     .fail(function(noMovie) {
         // append error message - this is FUCKED!
@@ -172,7 +205,7 @@ myApp.getInfo = function(pages) {
     //         // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
     //     })
 
-        // myApp.genreFind(movieArray);
+        
 
     // })
 
@@ -189,10 +222,6 @@ myApp.init = () => {
     //hide button on load
     myApp.buttonEvents();
     
-    
-
-    
-
 
 }
 

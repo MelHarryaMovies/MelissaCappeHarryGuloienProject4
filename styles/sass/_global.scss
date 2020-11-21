@@ -48,7 +48,7 @@ input {
 
 .flexBox {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding-top: 30px;
     
 }
@@ -76,22 +76,4 @@ input {
     display: none;
 }
 
-.imageBox,
-.infoBox {
-    width: 50%;
-    
-}
 
-.movieInfo {
-    padding-top: 50px;
-    font-size: 3.5rem;
-    text-decoration: underline;
-}
-
-.title {
-    font-size: 5rem;
-}
-
-.overview {
-    margin-bottom: 50px;
-}

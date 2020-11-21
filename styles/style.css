@@ -288,9 +288,8 @@ input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   padding-top: 30px;
 }
 
@@ -323,25 +322,6 @@ input {
 
 .hide {
   display: none;
-}
-
-.imageBox,
-.infoBox {
-  width: 50%;
-}
-
-.movieInfo {
-  padding-top: 50px;
-  font-size: 3.5rem;
-  text-decoration: underline;
-}
-
-.title {
-  font-size: 5rem;
-}
-
-.overview {
-  margin-bottom: 50px;
 }
 
 header {
@@ -408,6 +388,24 @@ h2 {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+}
+
+.movieInfo {
+  padding-top: 50px;
+  font-size: 3.5rem;
+  width: 50%;
+}
+
+.imageBox {
+  width: 50%;
+}
+
+.title {
+  font-size: 5rem;
+}
+
+.overview {
+  margin-bottom: 50px;
 }
 
 footer {
