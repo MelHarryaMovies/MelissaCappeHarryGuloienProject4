@@ -486,4 +486,7 @@ footer a:focus {
     width: 80%;
     max-height: 300px;
   }
+  img {
+    max-height: 100%;
+  }
 }
