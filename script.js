@@ -66,7 +66,11 @@ myApp.createGenreArray = (selectedGenre) => {
             return movie;
         }
     })
-    console.log(genreArray);
+    const chosenFilm = myApp.randomizer(genreArray)
+    const { genre_ids, title, poster_path, overview } = chosenFilm;
+    
+    console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
+    
 }
 
 
@@ -175,7 +179,7 @@ myApp.getInfo = function(pages) {
             return singlePage[0].results;
         })
         movieData.forEach(function(film) {
-            const { genre_ids, title, poster_path, overview } = film;
+            // const { genre_ids, title, poster_path, overview } = film;
             // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
             
         })
