@@ -97,23 +97,23 @@ myApp.genreFind = (arr) => {
         const romanceScore = romanceArray.length;
         const actionScore = actionArray.length;
         const horrorScore = horrorArray.length;
-        const fuckingMovies = [];
+        
+
         if (romanceScore >= 2) {
             const chosenGenre = myApp.romanceId;
-            
-            finalArray.map(function (oneMovie) {
-                if (oneMovie.genre_ids == chosenGenre) {
-                    fuckingMovies.push(oneMovie);
-                }
+            // const genreArray = finalArray.filter(function(moviesGodDamnit) {
+            //     moviesGodDamnit.genre_ids.incudes(80);
+               
                 
-            })
-            console.log(fuckingMovies);
-            // console.log(moviesGodDamnit.genre_ids);
-                
-            
+            // });
             
 
+            // if (finalArray.find(movie =>  movie.genre_ids.includes(80))) {
+            //     const movieChoices = finalArray.filter((movie) => {
+            //         if (movie.includes(movie)) {
 
+            //         }
+                
             // finalArray[i][chosenGenre]
             // console.log(genreArray);
         }
@@ -133,7 +133,7 @@ myApp.genreFind = (arr) => {
         
             
        
-
+    
     
 
         // console.log(romanceArray, actionArray, horrorArray);
