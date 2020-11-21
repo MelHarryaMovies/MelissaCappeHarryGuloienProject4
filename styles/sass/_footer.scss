@@ -6,5 +6,9 @@ footer {
 p {
     text-align: center;
     font-size: 1.8rem;
-    
+}
+
+footer a:hover,
+footer a:focus {
+    color: $sectionsColour;
 }

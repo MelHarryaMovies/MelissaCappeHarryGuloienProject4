@@ -274,12 +274,26 @@ li {
 }
 
 img {
-  width: 50%;
+  width: 85%;
   height: auto;
   display: block;
   margin: 0;
   background-position: contain;
   border: 2px solid white;
+}
+
+h2 {
+  font-size: 4.5rem;
+}
+
+legend {
+  font-size: 5rem;
+  padding-bottom: 35px;
+}
+
+label {
+  font-size: 3.2rem;
+  line-height: 5rem;
 }
 
 input {
@@ -326,10 +340,28 @@ input {
   display: none;
 }
 
+button:hover,
+button:focus,
+.enter:hover,
+.enter:focus {
+  background-color: #f05454;
+}
+
+.reload:hover,
+.reload:focus {
+  background-color: #e8e8e8;
+  color: black;
+}
+
 header {
   height: 100vh;
   background-color: #e8e8e8;
-  padding-top: 80px;
+  padding-top: 250px;
+}
+
+header p {
+  position: absolute;
+  bottom: 200px;
 }
 
 h1 {
@@ -357,15 +389,6 @@ section:nth-of-type(2n) {
   padding-bottom: 20px;
 }
 
-legend {
-  font-size: 5rem;
-}
-
-label {
-  font-size: 3.2rem;
-  line-height: 3.8rem;
-}
-
 .goButton .flexColumn {
   height: 100%;
   -webkit-box-pack: center;
@@ -379,11 +402,6 @@ button {
   font-size: 3rem;
   font-family: "Goldman", cursive;
   padding: 20px;
-  border-bottom: 4px;
-}
-
-h2 {
-  font-size: 4.5rem;
 }
 
 .reload {
@@ -410,6 +428,23 @@ h2 {
   margin-bottom: 50px;
 }
 
+.results {
+  height: auto;
+}
+
+.filmChoice {
+  padding-bottom: 50px;
+}
+
+label:hover,
+input:hover {
+  cursor: pointer;
+}
+
+input:focus + label {
+  border-bottom: 2px solid #e8e8e8;
+}
+
 footer {
   padding: 20px 0;
   background-color: #e8e8e8;
@@ -418,4 +453,30 @@ footer {
 p {
   text-align: center;
   font-size: 1.8rem;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #f05454;
+}
+
+@media (max-width: 768px) {
+  .mediaColumn {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .movieInfo {
+    width: 75%;
+  }
+  legend {
+    font-size: 3.5rem;
+  }
+  label {
+    font-size: 2.6rem;
+  }
 }

@@ -14,15 +14,6 @@ section:nth-of-type(2n) {
     padding-bottom: 20px;
 }
 
-legend {
-    font-size: 5rem;
-}
-
-label {
-    font-size: 3.2rem;
-    line-height: 3.8rem;
-}
-
 .goButton .flexColumn {
     height: 100%;
     justify-content: center;
@@ -34,11 +25,7 @@ button {
     font-size: 3rem;
     font-family: $mainFont;
     padding: 20px;
-    border-bottom: 4px;
-}
-
-h2 {
-    font-size: 4.5rem;
+    
 }
 
 .reload {
@@ -62,3 +49,22 @@ h2 {
 .overview {
     margin-bottom: 50px;
 }
+
+.results {
+    height: auto;
+}
+
+.filmChoice {
+    padding-bottom: 50px;
+}
+
+
+label:hover,
+input:hover {
+    cursor: pointer;
+}
+
+input:focus+label {
+    border-bottom: 2px solid $headerColour;
+}
+

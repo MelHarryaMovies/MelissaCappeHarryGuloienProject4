@@ -36,12 +36,26 @@ li {
 }
 
 img{
-    width: 50%;
+    width: 85%;
     height: auto;
     display: block;
     margin: 0;
     background-position: contain;
     border: 2px solid $fontColour;
+}
+
+h2 {
+    font-size: 4.5rem;
+}
+
+legend {
+    font-size: 5rem;
+    padding-bottom: 35px;
+}
+
+label {
+    font-size: 3.2rem;
+    line-height: 5rem;
 }
 
 input {
@@ -78,4 +92,15 @@ input {
     display: none;
 }
 
+button:hover,
+button:focus,
+.enter:hover,
+.enter:focus {
+    background-color: $sectionsColour;
+}
 
+.reload:hover,
+.reload:focus {
+    background-color: $headerColour;
+    color: $secondaryFontColour;
+}

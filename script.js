@@ -2,22 +2,19 @@
 //create name space
 const myApp = {};
 
+//store api info and data to reuse 
 myApp.apiKey = `262b2d458b0315ed4049499ffec1d210`;
 myApp.url = `https://api.themoviedb.org/3/discover/movie`;
 myApp.posterUrl = `https://image.tmdb.org/t/p/original`;
 
+//store api's genre id codes for later use
 myApp.romanceId = 10749;
 myApp.actionId = 28;
 myApp.horrorId = 27;
 myApp.documentaryId = 99;
 
-//genre - https://api.themoviedb.org/3/genre/movie/list
 
-
-//create init function 
-//timeout function on H1 or hover event listener that turns it into a button
-
-//randomizer function for ego check station outputs
+//randomizer function for selecting random movie from array
 myApp.randomizer = (arr) => {
     //write math to give a random number within the length of the array 
     const randomIndex = Math.floor(Math.random() * arr.length);
@@ -26,6 +23,7 @@ myApp.randomizer = (arr) => {
     return arr[randomIndex];
 }
 
+//scroll function to move to each section upon question answer
 myApp.scrolly = (whereTo) => {
     $([document.documentElement, document.body]).animate({
         scrollTop: whereTo.offset().top
@@ -33,19 +31,19 @@ myApp.scrolly = (whereTo) => {
 }
 
 
-
+//button events - H1 and title fade and button appears 
 myApp.buttonEvents = () => {
     $('.enter').hide();
-    setTimeout(function() {
-        $('.enter').fadeIn('slow', function() {
-        });
-        $('h1').fadeOut('slow', function() {
-        })
+    setTimeout(function () {
+        $('.enter').fadeIn('slow');
+        $('header p').fadeOut('slow');
+        $('h1').fadeOut('slow');
     }, 2000);
-    
-    $('input[name=firstDate]').on('change', function() {
+
+    //create event listeners to scroll page on question answer
+    $('input[name=firstDate]').on('change', function () {
         myApp.scrolly($('#questionTwo'));
-        
+
     });
     $('input[name=idealCar]').on('change', function () {
         myApp.scrolly($('#questionThree'));
@@ -54,11 +52,43 @@ myApp.buttonEvents = () => {
     $('input[name=vacation]').on('change', function () {
         myApp.scrolly($('#goButton'));
     });
-    
-    
+
+
 }
 
+//create function to select and display the chosen movie to the page (append)
+myApp.displayMovie = (arr) => {
 
+    const chosenFilm = myApp.randomizer(arr)
+    const { title, poster_path, overview } = chosenFilm;
+
+    const toAppend = `
+        <div class="filmChoice wrapper">
+                    <h2>And your movie is...</h2>
+                    <div class="flexBox">
+                        <div class="mediaColumn flexBox">
+                            <div class="imageBox flexBox">
+                            <img src="${myApp.posterUrl}${poster_path}" alt="${title} movie poster">
+                            </div>
+                            <div class="movieInfo flexColumn">
+                                    <p class="title">${title}</p>
+                                    <p class="overview">${overview}</p>
+                                <a class="reload" href="#questionOne">Again?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        `;
+    $('#results').empty();
+    $('#results').append(toAppend);
+
+    //event listener for reload button / reset form!
+    $('.reload').on('click', function () {
+        $('form').trigger('reset');
+    })
+}
+
+//function to create array using movies of chosen genre based on question answers
 myApp.createGenreArray = (selectedGenre) => {
 
     const genreArray = finalArray.filter((movie) => {
@@ -66,19 +96,17 @@ myApp.createGenreArray = (selectedGenre) => {
             return movie;
         }
     })
-    const chosenFilm = myApp.randomizer(genreArray)
-    const { genre_ids, title, poster_path, overview } = chosenFilm;
-    
-    console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
-    
+    //pass in the genre array to be randomized and film selected/displayed
+    myApp.displayMovie(genreArray);
 }
 
-
-myApp.genreFind = (arr) => {
+//function to collect user input and translate to specific genre
+myApp.genreFind = () => {
 
     $('form').on('submit', function (e) {
         e.preventDefault();
-        
+
+        //scroll to results on submit
         myApp.scrolly($('#results'));
 
         const romanceArray = [];
@@ -90,8 +118,10 @@ myApp.genreFind = (arr) => {
         const questionTwoChoice = $('input[name=idealCar]:checked').val();
         const questionThreeChoice = $('input[name=vacation]:checked').val();
 
+        //store user ansers in an array
         const userChoiceArray = [questionOneChoice, questionTwoChoice, questionThreeChoice];
- 
+
+        //loop through answer array and push answers into score array to keep track of how many of each genre(answer) they chose
         for (let i = 0; i < userChoiceArray.length; ++i) {
 
             if (userChoiceArray[i] === 'romance') {
@@ -103,27 +133,29 @@ myApp.genreFind = (arr) => {
             else if (userChoiceArray[i] === 'horror') {
                 horrorArray.push(userChoiceArray[i])
             }
-            
-            
+
+
         }
 
+        //take length of answer arrays and use length as score / store score
         const romanceScore = romanceArray.length;
         const actionScore = actionArray.length;
         const horrorScore = horrorArray.length;
-    
 
+        //find which score is highest and assign that genres ID (from api) into chosen genre
+        //pass chosen genre into GenreArray function 
         if (romanceScore >= 2) {
             const chosenGenre = myApp.romanceId;
-            
+
             myApp.createGenreArray(chosenGenre);
-            
+
         }
-        else if (actionScore >=2) {
+        else if (actionScore >= 2) {
             const chosenGenre = myApp.actionId;
 
             myApp.createGenreArray(chosenGenre);
         }
-        else if (horrorScore >=2) {
+        else if (horrorScore >= 2) {
             const chosenGenre = myApp.horrorId;
 
             myApp.createGenreArray(chosenGenre);
@@ -134,23 +166,13 @@ myApp.genreFind = (arr) => {
             myApp.createGenreArray(chosenGenre);
 
         }
-        
-            
-       
-    
-    
-
-        // console.log(romanceArray, actionArray, horrorArray);
-
-
     })
-
 }
 
 
 //call info from api 
-
-myApp.getInfo = function(pages) {
+//pass pages in as a parameter to select pages 480-500 (last 20 pages sorted by popularity - to get the "worst" movies - hahaha)
+myApp.getInfo = function (pages) {
     return $.ajax({
         url: myApp.url,
         method: `GET`,
@@ -162,82 +184,48 @@ myApp.getInfo = function(pages) {
             page: pages
         }
     })
-    // console.log(myApp.getInfo);
 }
 
-    const promiseArray = [];
-    const finalArray = [];
+const promiseArray = [];
+const finalArray = [];
 
-    for (let n = 480; n <= 500; n++) {
-        promiseArray.push(myApp.getInfo(n));
-    }
-    $.when(...promiseArray) 
-    .then(function(...moviePage) {
-        // console.log(moviePage);
-        const movieData = moviePage.map(function(singlePage) {
-            // console.log(singlePage[0].results[1].title)
+//loop through api calls passing in 1+ to the page parameter every time creating an array contaning 1 promise per each page called
+for (let n = 480; n <= 500; n++) {
+    promiseArray.push(myApp.getInfo(n));
+}
+//look at each promise/page and store as usable movieData
+$.when(...promiseArray)
+    .then(function (...moviePage) {
+
+        //map through movieData to return usable info
+        const movieData = moviePage.map(function (singlePage) {
+
             return singlePage[0].results;
         })
-        movieData.forEach(function(film) {
-            // const { genre_ids, title, poster_path, overview } = film;
-            // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
-            
-        })
-        // console.log(movieData[0]);
 
-        movieData.forEach(function(arrayPage) {
+        //filter through usable movieData to consolodate all pages into one array
+        movieData.forEach(function (arrayPage) {
             finalArray.push(...arrayPage);
-            
         })
 
+        //call genreFind to translate user input into a genre array
         myApp.genreFind();
-        // console.log(finalArray);
     })
-    .fail(function(noMovie) {
-        // append error message - this is FUCKED!
-        console.log('no movie')
+    //if API calls fail, tell the user about it!
+    .fail(function (noMovie) {
+        $('#results').append(`<h3>Sorry we are having technical difficulties!</h3>`)
     })
 
 
 
-    // myApp.getInfo.then(function (response) {
-    //     const movieArray = response.results;
-    //     console.log(movieArray);
-
-    //     movieArray.forEach(function (movie) {
-    //         const { genre_ids, title, poster_path, overview } = movie;
-    //         // console.log(`${title} is about ${overview} and heres a picture ${myApp.posterUrl}${poster_path}`);
-    //     })
-
-        
-
-    // })
-
-    
-//scroll function on h1 button that scrolls you down to q1
-
-//create function to gather user input and store it in variables
-//questions will evaluate based on a point system to decide genre 
-//IF TIE - then present 4th question 
-
-//function to call from the api and pass in user data variables as parameters
-//grab movie poster, title, overview
+//initialize function
 myApp.init = () => {
-    //hide button on load
     myApp.buttonEvents();
-    
-
 }
 
-
-
-
-
-
-  $(document).ready(function() {
+//doc ready holding our init function
+$(document).ready(function () {
     myApp.init();
-  });
+});
 
-//create display on page function 
 
-//Reset button

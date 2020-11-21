@@ -1,7 +1,11 @@
 header {
     height: 100vh;
     background-color: $headerColour;
-    padding-top: 80px;
+    padding-top: 250px;
+    & p {
+        position: absolute;
+        bottom: 200px;
+    }
 }
 
 h1 {
@@ -10,7 +14,7 @@ h1 {
 }
 
 .enter {
-    position: absolute;
-    
+    position: absolute;  
 }
+
 
