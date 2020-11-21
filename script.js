@@ -9,6 +9,7 @@ myApp.posterUrl = `https://image.tmdb.org/t/p/original`;
 myApp.romanceId = 10749;
 myApp.actionId = 28;
 myApp.horrorId = 27;
+myApp.documentaryId = 99;
 
 //genre - https://api.themoviedb.org/3/genre/movie/list
 
@@ -58,7 +59,15 @@ myApp.buttonEvents = () => {
 }
 
 
+myApp.createGenreArray = (selectedGenre) => {
 
+    const genreArray = finalArray.filter((movie) => {
+        if (movie.genre_ids.includes(selectedGenre)) {
+            return movie;
+        }
+    })
+    console.log(genreArray);
+}
 
 
 myApp.genreFind = (arr) => {
@@ -97,37 +106,28 @@ myApp.genreFind = (arr) => {
         const romanceScore = romanceArray.length;
         const actionScore = actionArray.length;
         const horrorScore = horrorArray.length;
-        
+    
 
         if (romanceScore >= 2) {
             const chosenGenre = myApp.romanceId;
-            // const genreArray = finalArray.filter(function(moviesGodDamnit) {
-            //     moviesGodDamnit.genre_ids.incudes(80);
-               
-                
-            // });
             
-
-            // if (finalArray.find(movie =>  movie.genre_ids.includes(80))) {
-            //     const movieChoices = finalArray.filter((movie) => {
-            //         if (movie.includes(movie)) {
-
-            //         }
-                
-            // finalArray[i][chosenGenre]
-            // console.log(genreArray);
+            myApp.createGenreArray(chosenGenre);
+            
         }
         else if (actionScore >=2) {
             const chosenGenre = myApp.actionId;
+
+            myApp.createGenreArray(chosenGenre);
         }
         else if (horrorScore >=2) {
             const chosenGenre = myApp.horrorId;
+
+            myApp.createGenreArray(chosenGenre);
         }
         else {
-            console.log('fuck you');
-            const chosenTitle = arr[16].title;
-            const chosenOverview = arr[16].overview;
-            const chosenPoster = arr[16].poster_path;
+            const chosenGenre = myApp.documentaryId
+
+            myApp.createGenreArray(chosenGenre);
 
         }
         
@@ -187,7 +187,7 @@ myApp.getInfo = function(pages) {
         })
 
         myApp.genreFind();
-        console.log(finalArray);
+        // console.log(finalArray);
     })
     .fail(function(noMovie) {
         // append error message - this is FUCKED!
