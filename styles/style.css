@@ -371,6 +371,13 @@ h1 {
 
 .enter {
   position: absolute;
+  -webkit-box-shadow: -1px 2px 20px 12px #000000;
+          box-shadow: -1px 2px 20px 12px #000000;
+}
+
+.enter:active {
+  -webkit-box-shadow: -1px 2px 20px 5px #000000;
+          box-shadow: -1px 2px 20px 5px #000000;
 }
 
 section {
@@ -379,7 +386,7 @@ section {
 }
 
 section:nth-of-type(2n) {
-  background-color: #30475e;
+  background-color: #416180;
 }
 
 .q1,
@@ -402,6 +409,13 @@ button {
   font-size: 3rem;
   font-family: "Goldman", cursive;
   padding: 20px;
+  -webkit-box-shadow: -1px 2px 20px 12px #000000;
+          box-shadow: -1px 2px 20px 12px #000000;
+}
+
+button:active {
+  -webkit-box-shadow: -1px 2px 20px 5px #000000;
+          box-shadow: -1px 2px 20px 5px #000000;
 }
 
 .reload {
@@ -473,6 +487,13 @@ footer a:focus {
   .movieInfo {
     width: 75%;
   }
+  .imageBox {
+    width: 80%;
+    max-height: 300px;
+  }
+  img {
+    max-height: 100%;
+  }
   legend {
     font-size: 3.5rem;
   }
@@ -481,12 +502,11 @@ footer a:focus {
   }
 }
 
-@media (max-width: 500px) {
-  .imageBox {
-    width: 80%;
-    max-height: 300px;
+@media (max-width: 480px) {
+  legend {
+    font-size: 3rem;
   }
-  img {
-    max-height: 100%;
+  label {
+    font-size: 2rem;
   }
 }
