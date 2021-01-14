@@ -33,12 +33,12 @@ myApp.scrolly = (whereTo) => {
 
 //button events - H1 and title fade and button appears 
 myApp.buttonEvents = () => {
-    $('.enter').hide();
-    setTimeout(function () {
-        $('.enter').fadeIn('slow');
-        $('header p').fadeOut('slow');
-        $('h1').fadeOut('slow');
-    }, 2000);
+    // $('.enter').hide();
+    // setTimeout(function () {
+    //     $('.enter').fadeIn('slow');
+    //     $('header p').fadeOut('slow');
+    //     $('h1').fadeOut('slow');
+    // }, 2000);
 
     //create event listeners to scroll page on question answer
     $('input[name=firstDate]').on('change', function () {

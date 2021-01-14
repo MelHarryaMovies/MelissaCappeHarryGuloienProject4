@@ -361,7 +361,7 @@ header {
 
 header p {
   position: absolute;
-  bottom: 200px;
+  bottom: 500px;
 }
 
 h1 {
@@ -370,14 +370,7 @@ h1 {
 }
 
 .enter {
-  position: absolute;
-  -webkit-box-shadow: -1px 2px 20px 12px #000000;
-          box-shadow: -1px 2px 20px 12px #000000;
-}
-
-.enter:active {
-  -webkit-box-shadow: -1px 2px 20px 5px #000000;
-          box-shadow: -1px 2px 20px 5px #000000;
+  margin-top: 200px;
 }
 
 section {
@@ -409,8 +402,6 @@ button {
   font-size: 3rem;
   font-family: "Goldman", cursive;
   padding: 20px;
-  -webkit-box-shadow: -1px 2px 20px 12px #000000;
-          box-shadow: -1px 2px 20px 12px #000000;
 }
 
 button:active {
