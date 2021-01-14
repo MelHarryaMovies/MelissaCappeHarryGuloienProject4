@@ -356,7 +356,7 @@ button:focus,
 header {
   height: 100vh;
   background-color: #e8e8e8;
-  padding-top: 250px;
+  padding-top: 150px;
 }
 
 header p {
@@ -370,7 +370,7 @@ h1 {
 }
 
 .enter {
-  margin-top: 200px;
+  margin-top: 400px;
 }
 
 section {
